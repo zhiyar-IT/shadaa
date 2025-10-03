@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shada | Sporty Personal Website</title>
+    <!-- Custom Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', Arial, sans-serif;
+            background: linear-gradient(120deg, #1e3c72 0%, #2a5298 100%);
+            color: #fff;
+        }
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(30,144,255,0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem 0;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            margin: 0 2rem;
+            font-size: 1.15rem;
+            letter-spacing: 1px;
+            transition: color 0.2s;
+            position: relative;
+        }
+        nav a:after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: #ff4500;
+            transition: width .3s;
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+        }
+        nav a:hover:after {
+            width: 100%;
+        }
+        nav a:hover {
+            color: #ff4500;
+        }
+        .hero {
+            position: relative;
+            text-align: center;
+            padding: 4rem 1rem 3rem 1rem;
+            background: linear-gradient(120deg, rgba(30,144,255,0.25) 0%, rgba(44,83,100,0.25) 100%);
+            overflow: hidden;
+            box-shadow: 0 8px 32px 0 rgba(44,83,100,0.18);
+            border-radius: 0 0 48px 48px;
+        }
+        /* SVG Wave */
+        .hero-bg-wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 120px;
+            z-index: 0;
+        }
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.2rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+        }
+        .hero p {
+            font-size: 1.35rem;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        .cta a {
+            background: linear-gradient(90deg, #ff4500 0%, #ff7f50 100%);
+            color: #fff;
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.15rem;
+            box-shadow: 0 4px 16px rgba(255,69,0,0.15);
+            transition: background 0.3s, transform 0.2s;
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+        }
+        .cta a:hover {
+            background: linear-gradient(90deg, #ff7f50 0%, #ff4500 100%);
+            transform: scale(1.05);
+        }
+        /* Social Media Links */
+        .social-links {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        .social-links a {
+            color: #fff;
+            font-size: 2rem;
+            transition: color 0.2s, transform 0.2s;
+        }
+        .social-links a:hover {
+            color: #ff4500;
+            transform: scale(1.2);
+        }
+        .profile-card {
+            background: rgba(255,255,255,0.07);
+            box-shadow: 0 8px 32px 0 rgba(44,83,100,0.25);
+            border-radius: 24px;
+            max-width: 900px;
+            margin: 3rem auto;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            padding: 2.5rem 2rem;
+            gap: 2rem;
+        }
+        .profile-card img {
+            border-radius: 50%;
+            width: 180px;
+            height: 180px;
+            border: 6px solid #ff4500;
+            box-shadow: 0 4px 24px rgba(255,69,0,0.18);
+            object-fit: cover;
+        }
+        .profile-info {
+            flex: 1;
+            min-width: 240px;
+        }
+        .profile-info h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.2rem;
+            margin-bottom: 0.7rem;
+            color: #ff7f50;
+        }
+        .profile-info p {
+            font-size: 1.15rem;
+            line-height: 1.7;
+            color: #f0f0f0;
+        }
+        /* Skills Progress Bars */
+        .skills-section {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 2rem 1rem;
+            background: rgba(255,255,255,0.07);
+            border-radius: 24px;
+            box-shadow: 0 4px 24px rgba(44,83,100,0.12);
+        }
+        .skills-section h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.7rem;
+            margin-bottom: 1.2rem;
+            text-align: center;
+            color: #ff7f50;
+        }
+        .skill {
+            margin-bottom: 1.2rem;
+        }
+        .skill-label {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+            color: #fff;
+        }
+        .progress-bar-bg {
+            background: #2a5298;
+            border-radius: 10px;
+            height: 18px;
+            width: 100%;
+            overflow: hidden;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #ff4500 0%, #ff7f50 100%);
+            width: 0;
+            transition: width 1.2s;
+        }
+        .achievements-section {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 2rem 1rem;
+        }
+        .achievements-section h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.7rem;
+            margin-bottom: 1.2rem;
+            text-align: center;
+            color: #ff7f50;
+        }
+        .achievements-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+        .achievement-card {
+            background: rgba(30,144,255,0.12);
+            border-radius: 16px;
+            padding: 1.2rem 1.5rem;
+            min-width: 220px;
+            max-width: 300px;
+            box-shadow: 0 2px 12px rgba(30,144,255,0.08);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .achievement-card i {
+            font-size: 2rem;
+            color: #ff4500;
+        }
+        .achievement-card span {
+            font-size: 1.1rem;
+            color: #fff;
+        }
+        .contact-section {
+            background: rgba(44,83,100,0.18);
+            padding: 2.5rem 1rem;
+            border-radius: 24px;
+            max-width: 600px;
+            margin: 3rem auto;
+            box-shadow: 0 2px 16px rgba(44,83,100,0.12);
+        }
+        .contact-section h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1.2rem;
+            text-align: center;
+            color: #ff7f50;
+        }
+        .contact-section form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .contact-section input,
+        .contact-section textarea {
+            padding: 0.9rem;
+            border-radius: 10px;
+            border: none;
+            font-size: 1rem;
+            background: #fff;
+            color: #222;
+            box-shadow: 0 2px 8px rgba(30,144,255,0.07);
+        }
+        .contact-section button {
+            background: linear-gradient(90deg, #ff4500 0%, #ff7f50 100%);
+            color: #fff;
+            border: none;
+            padding: 1rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-family: 'Montserrat', sans-serif;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(255,69,0,0.12);
+            transition: background 0.2s, transform 0.2s;
+        }
+        .contact-section button:hover {
+            background: linear-gradient(90deg, #ff7f50 0%, #ff4500 100%);
+            transform: scale(1.04);
+        }
+        footer {
+            text-align: center;
+            padding: 1.2rem 0;
+            background: #222;
+            color: #aaa;
+            font-size: 1rem;
+            margin-top: 2rem;
+            letter-spacing: 1px;
+        }
+        /* Background Decoration */
+        .background-decor {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: -2;
+            pointer-events: none;
+            background: radial-gradient(circle at 20% 30%, #1e90ff 0%, transparent 60%),
+                        radial-gradient(circle at 80% 70%, #ff4500 0%, transparent 60%),
+                        linear-gradient(120deg, #1e3c72 0%, #2a5298 100%);
+            opacity: 0.85;
+        }
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+            background: url('https://www.transparenttextures.com/patterns/cubes.png');
+            opacity: 0.08;
+        }
+        /* Responsive Enhancements */
+        @media (max-width: 900px) {
+            .profile-card, .skills-section, .achievements-section {
+                flex-direction: column;
+                text-align: center;
+                padding: 2rem 1rem;
+                max-width: 98vw;
+            }
+            .profile-card img {
+                margin-bottom: 1rem;
+            }
+        }
+        @media (max-width: 700px) {
+            nav {
+                flex-wrap: wrap;
+                padding: 0.5rem 0;
+            }
+            nav a {
+                margin: 0 0.5rem;
+                font-size: 0.95rem;
+                padding: 0.5rem 0;
+            }
+            .hero {
+                padding: 2rem 0.5rem 1.5rem 0.5rem;
+                border-radius: 0 0 24px 24px;
+            }
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+            .hero p {
+                font-size: 0.95rem;
+            }
+            .cta a {
+                font-size: 1rem;
+                padding: 0.7rem 1.2rem;
+            }
+            .social-links {
+                gap: 1rem;
+            }
+            .profile-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 1.2rem 0.5rem;
+                max-width: 98vw;
+            }
+            .profile-card img {
+                width: 120px;
+                height: 120px;
+                margin-bottom: 1rem;
+            }
+            .profile-info h2 {
+                font-size: 1.1rem;
+            }
+            .profile-info p, .profile-info ul, .profile-info h3 {
+                font-size: 0.95rem;
+            }
+            .skills-section, .achievements-section, .contact-section {
+                padding: 1.2rem 0.5rem;
+                border-radius: 16px;
+                max-width: 98vw;
+            }
+            .skills-section h2, .achievements-section h2, .contact-section h2 {
+                font-size: 1.1rem;
+            }
+            .skill-label {
+                font-size: 0.95rem;
+            }
+            .progress-bar-bg {
+                height: 14px;
+            }
+            .achievement-card {
+                min-width: 160px;
+                max-width: 98vw;
+                font-size: 0.95rem;
+                padding: 0.7rem 0.8rem;
+            }
+            .achievement-card i {
+                font-size: 1.3rem;
+            }
+            .contact-section input,
+            .contact-section textarea {
+                font-size: 0.95rem;
+                padding: 0.7rem;
+            }
+            .contact-section button {
+                font-size: 1rem;
+                padding: 0.7rem;
+            }
+            footer {
+                font-size: 0.85rem;
+                padding: 0.7rem 0;
+            }
+            .background-decor {
+                opacity: 1;
+            }
+        }
+        nav a.active {
+            color: #ff4500;
+        }
+    </style>
+    <script>
+        // Animate progress bars on scroll
+        window.addEventListener('DOMContentLoaded', function() {
+            function animateBars() {
+                document.querySelectorAll('.progress-bar-fill').forEach(function(bar) {
+                    var width = bar.getAttribute('data-width');
+                    bar.style.width = width;
+                });
+            }
+            // Animate when skills section is in view
+            function isInViewport(element) {
+                const rect = element.getBoundingClientRect();
+                return (
+                    rect.top < window.innerHeight &&
+                    rect.bottom > 0
+                );
+            }
+            function checkSkillsSection() {
+                const section = document.querySelector('.skills-section');
+                if (section && isInViewport(section)) {
+                    animateBars();
+                    window.removeEventListener('scroll', checkSkillsSection);
+                }
+            }
+            window.addEventListener('scroll', checkSkillsSection);
+            checkSkillsSection();
+        });
+        window.addEventListener('scroll', function() {
+            const sections = ['home','about','skills','achievements','testimonials','contact'];
+            let current = '';
+            sections.forEach(id => {
+                const section = document.getElementById(id);
+                if (section && window.scrollY >= section.offsetTop - 80) {
+                    current = id;
+                }
+            });
+            document.querySelectorAll('nav a').forEach(a => {
+                a.classList.remove('active');
+                if (a.getAttribute('href') === '#' + current) {
+                    a.classList.add('active');
+                }
+            });
+        });
+        function toggleKurdish() {
+            // English
+            document.getElementById('name-en').style.display = 'none';
+            document.getElementById('desc-en').style.display = 'none';
+            document.getElementById('about-en').style.display = 'none';
+            document.getElementById('about-text-en').style.display = 'none';
+            document.getElementById('sports-en').style.display = 'none';
+            document.getElementById('sports-list-en').style.display = 'none';
+            // Kurdish
+            document.getElementById('name-ku').style.display = '';
+            document.getElementById('desc-ku').style.display = '';
+            document.getElementById('about-ku').style.display = '';
+            document.getElementById('about-text-ku').style.display = '';
+            document.getElementById('sports-ku').style.display = '';
+            document.getElementById('sports-list-ku').style.display = '';
+        }
+    </script>
+</head>
+<body>
+    <!-- Add this inside <body> as the first element for a layered background effect -->
+    <div class="background-decor"></div>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#achievements">Achievements</a>
+        <a href="#contact">Contact</a>
+        <a href="#" onclick="toggleKurdish(); return false;" style="margin-left:2rem;"><i class="fas fa-language"></i> Kurdî</a>
+    </nav>
+    <section class="hero" id="home">
+        <h1 id="name-en">Shad Mahmood Mustafa</h1>
+        <h1 id="name-ku" style="display:none;">شاد مەحمود مستەفا</h1>
+        <p id="desc-en">
+            Student at University of Cihan <span style="color:#ff7f50;">|</span>
+            3rd Stage <span style="color:#ff7f50;">|</span>
+            Sport &amp; Physical Education
+        </p>
+        <p id="desc-ku" style="display:none;">
+            خوێندکار لە زانکۆی جیهان <span style="color:#ff7f50;">|</span>
+            پۆلی سێیەم <span style="color:#ff7f50;">|</span>
+            وەرزش و پەروەردەی جەسەنی
+        </p>
+        <div class="cta">
+            <a href="#contact"><i class="fas fa-envelope"></i> Get in Touch</a>
+        </div>
+        <div class="social-links">
+            <a href="https://linkedin.com/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://instagram.com/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://twitter.com/" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        </div>
+        <!-- SVG Wave Background -->
+        <svg class="hero-bg-wave" viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#1e90ff" fill-opacity="0.4" d="M0,32L60,53.3C120,75,240,117,360,117.3C480,117,600,75,720,69.3C840,64,960,96,1080,117.3C1200,139,1320,149,1380,154.7L1440,160L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path>
+        </svg>
+    </section>
+    <section class="profile-card" id="about">
+        <img src="shada.jpg" alt="Shad Mahmood Mustafa's Photo">
+        <div class="profile-info">
+            <h2 id="about-en">About Me</h2>
+            <h2 id="about-ku" style="display:none;">دەربارەی من</h2>
+            <p id="about-text-en">
+                I am Shad Mahmood Mustafa, a 3rd stage student at University of Cihan, specializing in Sport and Physical Education. Driven by a passion for sports science and athletic excellence, I combine academic knowledge with practical experience. My goal is to inspire others, promote healthy lifestyles, and contribute professionally to the field of physical education and sports.
+            </p>
+            <p id="about-text-ku" style="display:none;">
+                من شاد مەحمود مستەفا، خوێندکار پۆلی سێیەم لە زانکۆی جیهانم، تایبەتمەندی وەرزش و پەروەردەی جەسەنی. بە شەوقی زۆر بۆ زانستی وەرزش و سەرکەوتنی وەرزشی، زانیاری ئەکادیمی و تاقیکردنەوەی کارەبەشی دەکەم. ئامانجەکەم ئەوەیە کە هەڵسوکەوتی باش بڵاوبکەمەوە، ژیانی تەندروست پەروەبدم و بە شێوەیەکی پڕۆفیشنال بەشداربم لە وەرزش و پەروەردەی جەسەنی.
+            </p>
+            <h3 id="sports-en" style="color:#ff7f50; margin-top:2rem;">Sports I Know</h3>
+            <h3 id="sports-ku" style="color:#ff7f50; margin-top:2rem; display:none;">وەرزشەکانم</h3>
+            <ul id="sports-list-en" style="list-style:none; padding:0; margin:1rem 0 0 0;">
+                <li><i class="fas fa-futbol" style="color:#1e90ff;"></i> Football</li>
+                <li><i class="fas fa-basketball-ball" style="color:#ff4500;"></i> Basketball</li>
+                <li><i class="fas fa-volleyball-ball" style="color:#ff7f50;"></i> Volleyball</li>
+                <li><i class="fas fa-running" style="color:#1e90ff;"></i> Track &amp; Field</li>
+                <li><i class="fas fa-swimmer" style="color:#ff4500;"></i> Swimming</li>
+                <li><i class="fas fa-table-tennis" style="color:#ff7f50;"></i> Table Tennis</li>
+                <li><i class="fas fa-dumbbell" style="color:#1e90ff;"></i> Fitness Training</li>
+                <li><i class="fas fa-biking" style="color:#ff4500;"></i> Cycling</li>
+            </ul>
+            <ul id="sports-list-ku" style="list-style:none; padding:0; margin:1rem 0 0 0; display:none;">
+                <li><i class="fas fa-futbol" style="color:#1e90ff;"></i> تۆپە پێ</li>
+                <li><i class="fas fa-basketball-ball" style="color:#ff4500;"></i> باسکەتبۆل</li>
+                <li><i class="fas fa-volleyball-ball" style="color:#ff7f50;"></i> وۆڵیبۆل</li>
+                <li><i class="fas fa-running" style="color:#1e90ff;"></i> ڕاک و فیلد</li>
+                <li><i class="fas fa-swimmer" style="color:#ff4500;"></i> مەلەوانی</li>
+                <li><i class="fas fa-table-tennis" style="color:#ff7f50;"></i> تێنیسی مێز</li>
+                <li><i class="fas fa-dumbbell" style="color:#1e90ff;"></i> فیتنسی</li>
+                <li><i class="fas fa-biking" style="color:#ff4500;"></i> پێدەلوانی</li>
+            </ul>
+        </div>
+    </section>
+    <!-- Skills Progress Bars Section -->
+    <section class="skills-section" id="skills">
+        <h2>Skills</h2>
+        <div class="skill">
+            <div class="skill-label"><i class="fas fa-users"></i> Teamwork</div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" data-width="95%"></div>
+            </div>
+        </div>
+        <div class="skill">
+            <div class="skill-label"><i class="fas fa-running"></i> Athleticism</div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" data-width="90%"></div>
+            </div>
+        </div>
+        <div class="skill">
+            <div class="skill-label"><i class="fas fa-star"></i> Leadership</div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" data-width="85%"></div>
+            </div>
+        </div>
+        <div class="skill">
+            <div class="skill-label"><i class="fas fa-dumbbell"></i> Fitness Training</div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" data-width="80%"></div>
+            </div>
+        </div>
+    </section>
+    <section class="achievements-section" id="achievements">
+        <h2>Achievements</h2>
+        <div class="achievements-list">
+            <div class="achievement-card">
+                <i class="fas fa-futbol"></i>
+                <span>Captain of University Football Team (2024-2025)</span>
+            </div>
+            <div class="achievement-card">
+                <i class="fas fa-trophy"></i>
+                <span>Winner of Intercollegiate Athletics Championship</span>
+            </div>
+            <div class="achievement-card">
+                <i class="fas fa-calendar-check"></i>
+                <span>Organized Annual Sports Fest 2025</span>
+            </div>
+            <div class="achievement-card">
+                <i class="fas fa-dumbbell"></i>
+                <span>Certified Fitness Trainer</span>
+            </div>
+        </div>
+    </section>
+    <section class="contact-section" id="contact">
+        <h2>Contact Me</h2>
+        <form>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea rows="4" placeholder="Your Message" required></textarea>
+            <button type="submit"><i class="fas fa-paper-plane"></i> Send Message</button>
+        </form>
+    </section>
+    <footer>
+        &copy; 2025 Shada. All rights reserved.
+    </footer>
+</body>
+</html>
